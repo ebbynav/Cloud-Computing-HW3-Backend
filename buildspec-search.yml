@@ -1,0 +1,18 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.12
+    commands:
+      - pip install opensearch-py requests requests-aws4auth -t .
+  build:
+    commands:
+      - cp search-photo.py search_photo.py
+      - zip -r search-photo.zip search-photo.py search_photo.py *
+      - aws lambda update-function-code --function-name search-photos --zip-file fileb://search-photo.zip --region us-east-1
+      - aws lambda update-function-configuration --function-name search-photos --runtime python3.12 --handler search_photo.lambda_handler --region us-east-1
+
+artifacts:
+  files:
+    - search-photo.zip

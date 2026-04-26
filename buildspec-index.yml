@@ -16,6 +16,7 @@ phases:
       - aws lambda update-function-code --function-name index-photos --zip-file fileb://index_photo.zip --region us-east-1
       - aws lambda wait function-updated --function-name index-photos --region us-east-1
       - aws lambda update-function-configuration --function-name index-photos --runtime python3.12 --handler index_photo.lambda_handler --region us-east-1
+      - aws lambda wait function-updated --function-name index-photos --region us-east-1
 
 artifacts:
   files:

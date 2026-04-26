@@ -15,7 +15,7 @@ phases:
       - cd ..
       - aws lambda update-function-code --function-name search-photos --zip-file fileb://search_photo.zip --region us-east-1
       - aws lambda wait function-updated --function-name search-photos --region us-east-1
-      - aws lambda update-function-configuration --function-name search-photos --runtime python3.12 --handler search_photo.lambda_handler --region us-east-1
+      - aws lambda update-function-configuration --function-name search-photos --runtime python3.12 --handler search_photo.lambda_handler --environment "Variables={OPENSEARCH_ENDPOINT=search-photos-azfne762fb2b4rveyny3gjbe3m.us-east-1.es.amazonaws.com,LEX_BOT_ID=NOXSFUWCVB,LEX_BOT_ALIAS_ID=X1IYHRWEYB,LEX_LOCALE_ID=en_US}" --region us-east-1
       - aws lambda wait function-updated --function-name search-photos --region us-east-1
 
 artifacts:

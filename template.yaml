@@ -1,4 +1,4 @@
-AWSTemplateFormatVersion: '2010-09-09'
+AWSTemplateFormatVersion: "2010-09-09"
 Description: Basic CloudFormation stack for the AI Photo Search assignment.
 
 Parameters:
@@ -78,11 +78,11 @@ Resources:
     Properties:
       Bucket: !Ref FrontendBucket
       PolicyDocument:
-        Version: '2012-10-17'
+        Version: "2012-10-17"
         Statement:
           - Sid: AllowPublicRead
             Effect: Allow
-            Principal: '*'
+            Principal: "*"
             Action: s3:GetObject
             Resource: !Sub arn:aws:s3:::${FrontendBucket}/*
 
@@ -100,7 +100,7 @@ Resources:
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
-        Version: '2012-10-17'
+        Version: "2012-10-17"
         Statement:
           - Effect: Allow
             Principal:
@@ -111,7 +111,7 @@ Resources:
       Policies:
         - PolicyName: IndexPhotosAccess
           PolicyDocument:
-            Version: '2012-10-17'
+            Version: "2012-10-17"
             Statement:
               - Effect: Allow
                 Action:
@@ -120,13 +120,13 @@ Resources:
                   - es:ESHttpGet
                   - es:ESHttpPost
                   - es:ESHttpPut
-                Resource: '*'
+                Resource: "*"
 
   SearchPhotosRole:
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
-        Version: '2012-10-17'
+        Version: "2012-10-17"
         Statement:
           - Effect: Allow
             Principal:
@@ -137,7 +137,7 @@ Resources:
       Policies:
         - PolicyName: SearchPhotosAccess
           PolicyDocument:
-            Version: '2012-10-17'
+            Version: "2012-10-17"
             Statement:
               - Effect: Allow
                 Action:
@@ -145,7 +145,7 @@ Resources:
                   - lex:RecognizeText
                   - es:ESHttpGet
                   - es:ESHttpPost
-                Resource: '*'
+                Resource: "*"
 
   IndexPhotosFunction:
     Type: AWS::Lambda::Function
@@ -205,7 +205,7 @@ Resources:
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
-        Version: '2012-10-17'
+        Version: "2012-10-17"
         Statement:
           - Effect: Allow
             Principal:
@@ -214,7 +214,7 @@ Resources:
       Policies:
         - PolicyName: ApiGatewayS3Access
           PolicyDocument:
-            Version: '2012-10-17'
+            Version: "2012-10-17"
             Statement:
               - Effect: Allow
                 Action:
@@ -264,14 +264,14 @@ Resources:
     Properties:
       RestApiId: !Ref PhotoSearchApi
       ParentId: !Ref PhotosResource
-      PathPart: '{object}'
+      PathPart: "{object}"
 
   UploadObjectResource:
     Type: AWS::ApiGateway::Resource
     Properties:
       RestApiId: !Ref PhotoSearchApi
       ParentId: !Ref UploadResource
-      PathPart: '{object}'
+      PathPart: "{object}"
 
   SearchOptionsMethod:
     Type: AWS::ApiGateway::Method

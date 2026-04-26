@@ -45,19 +45,19 @@ Parameters:
 
   IndexFunctionCodeS3Bucket:
     Type: String
-    Description: S3 bucket containing the index-photo Lambda zip package.
+    Description: S3 bucket containing the index_photo Lambda zip package.
 
   IndexFunctionCodeS3Key:
     Type: String
-    Description: S3 key for the index-photo Lambda zip package.
+    Description: S3 key for the index_photo Lambda zip package.
 
   SearchFunctionCodeS3Bucket:
     Type: String
-    Description: S3 bucket containing the search-photo Lambda zip package.
+    Description: S3 bucket containing the search_photo Lambda zip package.
 
   SearchFunctionCodeS3Key:
     Type: String
-    Description: S3 key for the search-photo Lambda zip package.
+    Description: S3 key for the search_photo Lambda zip package.
 
 Resources:
   FrontendBucket:
